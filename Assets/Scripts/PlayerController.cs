@@ -5,23 +5,32 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    private Rigidbody2D playerRigidBody;
+    private Vector2 movement;
 
-    void Start()
+    private void Start()
     {
-        
+        playerRigidBody = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
-        Movement();
-    }
-
-    private void Movement()
-    {
+        //Handling input in update 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f) * moveSpeed * Time.deltaTime;
-        transform.Translate(movement);
+        //Calculating movement direction based on the input.
+        movement = new Vector2(horizontalInput, verticalInput).normalized;
+    }
+
+    private void FixedUpdate()
+    {
+        CharacterMovement(movement);
+    }
+
+    private void CharacterMovement(Vector2 direction)
+    {
+        //Applying movement to rigidbody in FixedUpdate.
+        playerRigidBody.MovePosition(playerRigidBody.position + direction * moveSpeed * Time.fixedDeltaTime);
     }
 }
