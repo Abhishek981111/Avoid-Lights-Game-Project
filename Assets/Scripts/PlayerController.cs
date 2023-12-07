@@ -21,6 +21,12 @@ public class PlayerController : MonoBehaviour
 
         //Calculating movement direction based on the input.
         movement = new Vector2(horizontalInput, verticalInput).normalized;
+
+        //To flip the player
+        if(horizontalInput != 0)
+        {
+            transform.localScale = new Vector3(Mathf.Sign(horizontalInput), 1, 1);
+        }
     }
 
     private void FixedUpdate()
