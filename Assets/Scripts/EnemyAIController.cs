@@ -3,22 +3,21 @@ using UnityEngine;
 public class EnemyAIController : MonoBehaviour
 {
     [SerializeField] float speed = 5f;
-    [SerializeField] float stoppingDistance = 1.5f;
-    [SerializeField] float explosionRadius = 2f; // Distance to stop from player
+    [SerializeField] float stoppingDistance = 1.0f;
+    [SerializeField] float explosionRadius = 2f; 
     [SerializeField] float raycastDistance = 5.0f; 
     [SerializeField] int explosionDamage = 10;
     public LayerMask obstacleLayer; 
-    //public GameObject explosionEffect;
     private Transform player;
     private Rigidbody2D rb;
 
-    void Start()
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
         if (player != null)
         {
@@ -47,11 +46,8 @@ public class EnemyAIController : MonoBehaviour
         }
     }
 
-    void Explode()
+    private void Explode()
     {
-        // Instantiate explosion effect at enemy's position
-        //Instantiate(explosionEffect, transform.position, Quaternion.identity);
-
         // Find all colliders within the explosion radius
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
@@ -60,10 +56,12 @@ public class EnemyAIController : MonoBehaviour
         {
             if (col.CompareTag("Player"))
             {
-                // Damage the player
-                // Replace with player health/damage system
-                //col.GetComponent<PlayerHealth>().TakeDamage(explosionDamage);
-                Debug.Log("Player damaged by explosion");
+                PlayerHealthController playerHealthController = col.GetComponent<PlayerHealthController>();
+                if(playerHealthController != null)
+                {
+                    playerHealthController.TakeDamage(explosionDamage);
+                    Debug.Log("Player damaged by explosion");
+                }
             }
         }
 
