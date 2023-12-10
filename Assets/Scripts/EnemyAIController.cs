@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class EnemyAIController : MonoBehaviour
 {
-    public float speed = 5f;
-    public float stoppingDistance = 0.1f; // Distance to stop from player
-    public float raycastDistance = 5.0f; 
+    [SerializeField] float speed = 5f;
+    [SerializeField] float stoppingDistance = 1.5f;
+    [SerializeField] float explosionRadius = 2f; // Distance to stop from player
+    [SerializeField] float raycastDistance = 5.0f; 
+    [SerializeField] int explosionDamage = 10;
     public LayerMask obstacleLayer; 
+    //public GameObject explosionEffect;
     private Transform player;
     private Rigidbody2D rb;
 
@@ -38,8 +41,33 @@ public class EnemyAIController : MonoBehaviour
             }
             else
             {
-                rb.velocity = Vector2.zero;
+                //rb.velocity = Vector2.zero;
+                Explode();
             }
         }
+    }
+
+    void Explode()
+    {
+        // Instantiate explosion effect at enemy's position
+        //Instantiate(explosionEffect, transform.position, Quaternion.identity);
+
+        // Find all colliders within the explosion radius
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+
+        // Check each collider for player tag and deal damage if found
+        foreach (Collider2D col in colliders)
+        {
+            if (col.CompareTag("Player"))
+            {
+                // Damage the player
+                // Replace with player health/damage system
+                //col.GetComponent<PlayerHealth>().TakeDamage(explosionDamage);
+                Debug.Log("Player damaged by explosion");
+            }
+        }
+
+        // Destroy the enemy
+        Destroy(gameObject);
     }
 }

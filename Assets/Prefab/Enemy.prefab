@@ -173,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   stoppingDistance: 0.5
+  explosionRadius: 2
   raycastDistance: 5
   obstacleLayer:
     serializedVersion: 2
