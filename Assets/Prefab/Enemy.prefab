@@ -110,9 +110,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &6618904394071310089
 BoxCollider2D:
@@ -171,11 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b0066dd4ae0e04b8480b632d404701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  stoppingDistance: 0.09
+  speed: 4
+  stoppingDistance: 1.5
   explosionRadius: 2
-  raycastDistance: 6
+  raycastDistance: 4
   explosionDamage: 20
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0

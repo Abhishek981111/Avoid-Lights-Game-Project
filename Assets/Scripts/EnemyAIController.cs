@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class EnemyAIController : MonoBehaviour
 {
-    [SerializeField] float speed = 5f;
-    [SerializeField] float stoppingDistance = 1.0f;
-    [SerializeField] float explosionRadius = 2f; 
-    [SerializeField] float raycastDistance = 5.0f; 
-    [SerializeField] int explosionDamage = 10;
+    [SerializeField] float speed;
+    [SerializeField] float stoppingDistance;
+    [SerializeField] float explosionRadius; 
+    [SerializeField] float raycastDistance; 
+    [SerializeField] int explosionDamage;
     public LayerMask obstacleLayer; 
     private Transform player;
     private Rigidbody2D rb;
