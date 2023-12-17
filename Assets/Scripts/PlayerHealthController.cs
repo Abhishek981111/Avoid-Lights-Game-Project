@@ -32,6 +32,8 @@ public class PlayerHealthController : MonoBehaviour
     {
         Debug.Log("Player has died!");
         OnPlayerDeath.Invoke();
+        SoundManager.Instance.Play(Sounds.PlayerDie);
+        SoundManager.Instance.Play(Sounds.GameOver);
     }
 
     private void UpdateUI()

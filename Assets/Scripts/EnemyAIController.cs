@@ -67,5 +67,6 @@ public class EnemyAIController : MonoBehaviour
 
         // Destroy the enemy
         Destroy(gameObject);
+        SoundManager.Instance.Play(Sounds.EnemyExplosion);
     }
 }

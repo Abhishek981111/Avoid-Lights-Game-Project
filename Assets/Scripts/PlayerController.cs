@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
+        SoundManager.Instance.PlayMusic(Sounds.Music);
     }
 
     private void Update()
