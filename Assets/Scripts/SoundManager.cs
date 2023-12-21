@@ -100,5 +100,6 @@ public enum Sounds
     EnemyExplosion,
     Door,
     GameOver, 
-    PlayerDie
+    PlayerDie,
+    Keys
 }

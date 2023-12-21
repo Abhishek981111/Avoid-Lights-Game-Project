@@ -10,6 +10,7 @@ public class EnemyAIController : MonoBehaviour
     public LayerMask obstacleLayer; 
     private Transform player;
     private Rigidbody2D rb;
+    private bool canMove = true;
 
     private void Start()
     {
@@ -40,10 +41,15 @@ public class EnemyAIController : MonoBehaviour
             }
             else
             {
-                //rb.velocity = Vector2.zero;
                 Explode();
             }
         }
+    }
+
+    public void StopMovement()
+    {
+        canMove = false;
+        rb.velocity = Vector2.zero;
     }
 
     private void Explode()

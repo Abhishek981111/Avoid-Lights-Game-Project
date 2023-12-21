@@ -6,6 +6,7 @@ public class Collectibles : MonoBehaviour
     public TMP_Text keysCollectedText; 
     public GameObject door; 
     public GameObject gameOverPanel; 
+    public EnemyAIController enemyMovementScript;
 
     private static int totalKeys = 6; 
     private static int keysCollected = 0;
@@ -30,6 +31,7 @@ public class Collectibles : MonoBehaviour
     private void CollectKey()
     {
         keysCollected++;
+        SoundManager.Instance.Play(Sounds.Keys);
         UpdateKeysUI();
         Destroy(gameObject); 
         
@@ -37,7 +39,7 @@ public class Collectibles : MonoBehaviour
 
     private void UpdateKeysUI()
     {
-        if (keysCollectedText != null)
+        if(keysCollectedText != null)
         {
             keysCollectedText.text = "Keys Collected: " + keysCollected + " / " + totalKeys;
         }
@@ -45,7 +47,7 @@ public class Collectibles : MonoBehaviour
 
     private void CheckCompletion()
     {
-        if (keysCollected >= totalKeys && doorLocked)
+        if(keysCollected >= totalKeys && doorLocked)
         {
             PlayerWins();
         }
@@ -57,12 +59,18 @@ public class Collectibles : MonoBehaviour
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true); 
+            SoundManager.Instance.Play(Sounds.Door);
 
             TMP_Text gameOverText = gameOverPanel.GetComponentInChildren<TMP_Text>();
             if (gameOverText != null)
             {
                 gameOverText.text = "Player Wins!";
             }
+        }
+
+        if(enemyMovementScript != null)
+        {
+            enemyMovementScript.StopMovement();
         }
     }
 }
