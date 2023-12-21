@@ -9,25 +9,27 @@ public class Collectibles : MonoBehaviour
 
     private static int totalKeys = 6; 
     private static int keysCollected = 0;
-    private bool collected = false;
+    private bool doorLocked = true;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!collected && other.CompareTag("Player"))
+        if(other.CompareTag("Player"))
         {
-            Debug.Log("Player Collision Detected");
-            CollectKey();
-        }
-        else if(gameObject.CompareTag("Door"))
-        {
-            CheckCompletion();
-        }
+            if(gameObject.CompareTag("Key"))
+            {
+                Debug.Log("Player Collision Detected");
+                CollectKey();
+            }
+            else if(gameObject.CompareTag("Door"))
+            {
+                CheckCompletion();
+            }
+        }   
     }
 
     private void CollectKey()
     {
         keysCollected++;
-        //collected = true;
         UpdateKeysUI();
         Destroy(gameObject); 
         
@@ -43,7 +45,7 @@ public class Collectibles : MonoBehaviour
 
     private void CheckCompletion()
     {
-        if (keysCollected >= totalKeys && door != null)
+        if (keysCollected >= totalKeys && doorLocked)
         {
             PlayerWins();
         }
@@ -51,11 +53,11 @@ public class Collectibles : MonoBehaviour
 
     private void PlayerWins()
     {
+        doorLocked = false;
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true); 
 
-            // Display "Player Wins" text 
             TMP_Text gameOverText = gameOverPanel.GetComponentInChildren<TMP_Text>();
             if (gameOverText != null)
             {
