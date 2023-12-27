@@ -10,6 +10,7 @@ public class Collectibles : MonoBehaviour
     private static int totalKeys = 6; 
     private static int keysCollected = 0;
     private bool doorLocked = true;
+    public EnemyAIController[] enemies;
 
     private void Start()
     {
@@ -71,6 +72,8 @@ public class Collectibles : MonoBehaviour
                 gameOverText.text = "Player Wins!";
             }
 
+            DestroyEnemies();     //Destroy all enemies :(
+
             if(enemyMovementScript != null)
             {
                 enemyMovementScript.StopMovement();
@@ -81,5 +84,15 @@ public class Collectibles : MonoBehaviour
     public void ResetKeysCount()
     {
         keysCollected = 0;
+    }
+
+    private void DestroyEnemies()
+    {
+        enemies = FindObjectsOfType<EnemyAIController>();
+
+        foreach (EnemyAIController enemy in enemies)
+        {
+            Destroy(enemy.gameObject);
+        }
     }
 }
