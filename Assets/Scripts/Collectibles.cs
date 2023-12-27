@@ -7,7 +7,6 @@ public class Collectibles : MonoBehaviour
     public GameObject door; 
     public GameObject gameOverPanel; 
     public EnemyAIController enemyMovementScript;
-
     private static int totalKeys = 6; 
     private static int keysCollected = 0;
     private bool doorLocked = true;
@@ -66,11 +65,13 @@ public class Collectibles : MonoBehaviour
             {
                 gameOverText.text = "Player Wins!";
             }
+
+            if(enemyMovementScript != null)
+            {
+                enemyMovementScript.StopMovement();
+            }
         }
 
-        if(enemyMovementScript != null)
-        {
-            enemyMovementScript.StopMovement();
-        }
+        
     }
 }
