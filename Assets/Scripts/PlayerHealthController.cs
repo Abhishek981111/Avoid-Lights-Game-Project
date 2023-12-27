@@ -8,11 +8,13 @@ public class PlayerHealthController : MonoBehaviour
     public int currentHealth;
     public Slider healthSlider;
     public UnityEvent OnPlayerDeath;
+    private Collectibles collectibles;
 
     void Start()
     {
         currentHealth = maxHealth;
         UpdateUI(); 
+        collectibles = FindObjectOfType<Collectibles>();
     }
 
     public void TakeDamage(int damage)
@@ -34,6 +36,11 @@ public class PlayerHealthController : MonoBehaviour
         OnPlayerDeath.Invoke();
         SoundManager.Instance.Play(Sounds.PlayerDie);
         SoundManager.Instance.Play(Sounds.GameOver);
+
+        if (collectibles != null)
+        {
+            collectibles.ResetKeysCount();
+        }
     }
 
     private void UpdateUI()

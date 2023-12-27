@@ -11,6 +11,11 @@ public class Collectibles : MonoBehaviour
     private static int keysCollected = 0;
     private bool doorLocked = true;
 
+    private void Start()
+    {
+        keysCollected = 0;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
@@ -70,8 +75,11 @@ public class Collectibles : MonoBehaviour
             {
                 enemyMovementScript.StopMovement();
             }
-        }
+        }    
+    }
 
-        
+    public void ResetKeysCount()
+    {
+        keysCollected = 0;
     }
 }
