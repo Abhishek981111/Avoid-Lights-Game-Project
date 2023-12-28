@@ -6,7 +6,6 @@ public class Collectibles : MonoBehaviour
     public TMP_Text keysCollectedText; 
     public GameObject door; 
     public GameObject gameOverPanel; 
-    public EnemyAIController enemyMovementScript;
     private static int totalKeys = 6; 
     private static int keysCollected = 0;
     private bool doorLocked = true;
@@ -73,11 +72,6 @@ public class Collectibles : MonoBehaviour
             }
 
             DestroyEnemies();     //Destroy all enemies :(
-
-            if(enemyMovementScript != null)
-            {
-                enemyMovementScript.StopMovement();
-            }
         }    
     }
 
