@@ -2,6 +2,7 @@
 **Game Jam** :- Under the theme of "Avoid The Light" and "Do No Harm".
 **Playable Game Link** :- https://lnkd.in/dfwDsDJQ
 **GitHub Link** :- https://lnkd.in/dPqP3K-x
+**LinkedIn Post with gamaplay video** :- https://www.linkedin.com/posts/abhishek-kadam98_unity-buildinpublic-csharp-activity-7148682110617264129-L8m9?utm_source=share&utm_medium=member_desktop
 
 **Game Concept** :- A survival escape game. Player is in a ghostly labyrinth trying to escape through the maze but to escape through maze player has to find all the keys to be able to finish the level. But all the keys are placed on crypts and being protected by some ghostly entities which wont allow player to escape through the maze. To be able to escape, player must need to collect all the keys and unlock the door.
 
